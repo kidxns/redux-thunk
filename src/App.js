@@ -1,7 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect } from "react";
+import { loadPosts } from "./redux/actions/post";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+  const data = useSelector((state) => state.post.data);
+  const loading = useSelector((state) => state.post.loading);
+  const dispatch = useDispatch();
+  console.log(data, loading);
+
+  useEffect(() => {
+    dispatch(loadPosts());
+  },[dispatch]);
   return (
     <div className="App">
       <header className="App-header">
